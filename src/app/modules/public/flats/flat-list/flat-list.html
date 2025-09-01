@@ -1,0 +1,46 @@
+<div class="">
+
+  <h2 *ngIf="flatList$ && flatList.length > 0"> {{title}}</h2>
+  <button matButton="filled" (click)="showFree()" class=" !bg-blue-500 !text-white !rounded-lg !shadow-lg ">
+    <mat-icon> {{isFree?'visibility':'visibility_off'}}</mat-icon>
+    {{isFree?'Hide':'Show'}} free Appartements
+  </button>
+
+  <div class="flex justify-between items-center mt-5">
+    <span class="mr-10"> Actual filter: "<b>{{flatFilter}}"</b></span>
+    <div class="flex flex-wrap items-center">
+      <mat-icon>search</mat-icon>
+      <input type="text" [(ngModel)]="flatFilter" placeholder="Search a flat">
+    </div>
+  </div>
+
+
+
+
+
+  <div class="container flex flex-wrap justify-center items-center gap-4 ">
+    <mat-card *ngFor="let flat of flatList$ |async" class="max-w-[300px] !shadow-lg !rounded-lg ">
+
+      <mat-card-header>
+        <img mat-card-avatar [src]="flat.imageUrl" class="bg-cover">
+        <mat-card-title *ngIf="flat.isFree" [matBadge]="isFree?'free': null" matBadgeOverlap="false" > </mat-card-title>
+        <mat-card-subtitle> {{flat.flatName}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="flat.imageUrl" [alt]="flat.flatName">
+      <mat-card-content>
+        <p>
+          {{flat.description}}
+        </p>
+        <p class=" bold">
+          price
+          {{flat.price }}
+        </p>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <span class="material-icons bg-blue-500 text-white p-2 rounded-full" [routerLink]="['/flats', flat.id]">keyboard_arrow_right</span>
+        <span class="material-icons bg-red-500 text-white p-2 rounded-full" [routerLink]="['/flats', flat.id, 'edit']">edit</span>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

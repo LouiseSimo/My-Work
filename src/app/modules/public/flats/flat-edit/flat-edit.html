@@ -1,0 +1,92 @@
+<mat-card class="max-w-2xl mx-auto mt-8 shadow-lg rounded-xl">
+  <mat-card-header class="bg-gray-100">
+    <mat-card-title class="text-2xl font-bold">{{pageTitle}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="space-y-4 p-4">
+    <form novalidate class="space-y-4" [formGroup]="flatForm" (ngSubmit)="saveFlat()">
+
+      <!-- Flat Name -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Flat Name</mat-label>
+        <input matInput formControlName="flatName" placeholder="Name (compulsory )" />
+      </mat-form-field>
+
+      <!-- Location -->
+      <!-- <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Location</mat-label>
+        <input matInput name="location" [(ngModel)]="flat.location" required />
+      </mat-form-field> -->
+
+      <!-- Price -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="Price (compulsory )" />
+        <span matSuffix>$</span>
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder=" Description(compulsory )" rows="4"></textarea>
+      </mat-form-field>
+
+      <!-- Image URL -->
+      <!-- <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Image URL</mat-label>
+        <input matInput name="imageUrl" [(ngModel)]="flat.imageUrl" />
+      </mat-form-field> -->
+
+      <!-- Image Preview -->
+      <!-- <div *ngIf="flat.imageUrl" class="mt-4">
+        <img [src]="flat.imageUrl" alt="Flat preview" class="rounded-lg shadow-md w-full h-60 object-cover" />
+      </div> -->
+
+      <mat-slide-toggle formControlName="isFree">
+        Is the flat free?
+      </mat-slide-toggle>
+
+      <!-- Buttons -->
+
+      <div class="flex justify-end gap-4 mt-6">
+
+        <!-- Delete -->
+        <button mat-raised-button color="warn" type="button" (click)="deleteFlat()" >
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+
+        <!-- Cancel -->
+        <button mat-stroked-button color="primary" type="button"  routerLink='/flats'>
+          Cancel
+        </button>
+
+        <!-- Submit -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="flatForm.invalid">
+          <mat-icon>check</mat-icon>
+          Submit
+        </button>
+
+      </div>
+
+      <div class="flex justify-end gap-4 mt-6">
+        
+        <!-- <button type="submit" [disabled]="flatForm.invalid"
+          class=" border-2 border-sky-500 rounded-xl p-2 mr-3 text-sky-500 hover:bg-sky-500  hover:text-white ">
+          Save Flat
+        </button>
+        <button type="button" routerLink='/flats'
+          class=" border-2 border-grey-500 rounded-xl p-2 mr-3 text-grey-500 hover:bg-grey-500  hover:text-white ">
+          Cancel</button>
+        <button type="button" (click)="deleteFlat()"
+          class=" border-2 border-red-500 rounded-xl p-2 mr-3 text-red-500 hover:bg-red-500  hover:text-white ">
+          Delete</button> -->
+
+      </div>
+    </form>
+
+    <pre>
+    {{flatForm.value | json }}
+  </pre>
+  </mat-card-content>
+</mat-card>

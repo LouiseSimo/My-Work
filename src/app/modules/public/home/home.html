@@ -1,0 +1,33 @@
+<div class="bg-[#ba494a] text-white p-10 min-h-screen">
+
+    <div class="flex flex-row justify-left items-center pb-5">
+        <label for="filter" class="pr-5"> Tasks:</label>
+        <select class="border-1" [(ngModel)]="selectedFilter">
+            <option [value]="0"> All</option>
+            <option [value]="1"> completed</option>
+            <option [value]="2"> non completed</option>
+        </select>
+    </div>
+
+    <div class=" ">
+        <div *ngIf="taskList.length === 0; else taskListTemplate">
+            <p>There is no task to display </p>
+        </div>
+
+        <ng-template #taskListTemplate>
+            <div *ngFor='let task of taskList' class="flex flex-row justify-between items-center  p-2 my-2">
+                <p>{{task.taskName}}</p>
+                <button (click)="completedTask(task)" class=" border-2 border-green-300"> Task completed </button>
+                <button (click)="deleteTask(task)" class=" border-2 border-red-300">Delete Task</button>
+            </div>
+
+        </ng-template>
+    </div>
+
+    <form action="" class="flex flex-row justify-center items-center my-10">
+        <input type="text" id="addTask" name="addTask" [(ngModel)]="newTaskName"
+            class="border-2 border-dashed border-gray-400 p-5 placeholder-gray-300 placeholder-center"
+            placeholder=" Add a new task" />
+        <!-- <button type="submit" (click)="$event.preventDefault();addNewTask()">Add Task</button> -->
+    </form>
+</div>

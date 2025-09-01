@@ -1,7 +1,38 @@
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
- 
+<!-- <div class="container m-5 flex flex-col">
+  <mat-toolbar class="bg-white shadow-md fixed top-0 left-0 w-full z-50 flex items-center px-6 py-3 h-16"> <span
+      class="text-xl font-bold text-blue-600"> {{title}} Application</span>
 
+    <span class="flex-1"></span>
 
-<h1 class="text-3xl font-bold underline bg-blue-500">
-  Hello worldddddd!
-</h1>
+    <nav class="space-x-4">
+      <button class="pb-2   hover:text-blue-500 transition-all duration-200"
+        routerLinkActive="text-blue-600 border-b-2 border-blue-500" routerLink="/home">Home</button>
+
+      <button class="pb-2    hover:text-blue-500 transition-all duration-200"
+        routerLinkActive="text-blue-600 border-b-2 border-blue-500" 
+        [routerLinkActiveOptions]="{ exact: true }" routerLink="/flats">flat List</button>
+
+      <button class="pb-2    hover:text-blue-500 transition-all duration-200"
+        [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="text-blue-600 border-b-2 border-blue-500"
+        [routerLink]="['/flats', '0', 'edit'] ">Add a flat</button>
+    </nav>
+  </mat-toolbar>
+
+  <div class="pt- container mx-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+
+<header class="w-full bg-white shadow px-6 py-3  h-16 shadow-md fixed top-0 left-0 w-full z-50 flex items-center justify-between">
+  <div class="text-xl font-bold text-blue-600">{{title}}</div>
+  <nav class="flex gap-6">
+    <a *ngFor="let item of menuItems" [routerLink]="item.route"
+      routerLinkActive="border-b-2 border-blue-600 text-blue-600" [routerLinkActiveOptions]="{ exact: true }"
+      class="text-gray-600 hover:text-blue-600 transition-all pb-1">
+      {{ item.label }}
+    </a>
+  </nav>
+</header>
+<div class="pt-18 container mx-auto">
+  <router-outlet></router-outlet>
+</div>
